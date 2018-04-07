@@ -77,7 +77,6 @@ die(const char *message, ...)
 static void
 nicenum(uint64_t num, char *buf)
 {
-
 	uint64_t n = num;
 	int index = 0;
 	char u;
@@ -106,7 +105,6 @@ nicenum(uint64_t num, char *buf)
 static void
 tunables(void)
 {
-
 	int i;
 	static struct nlist nl[] = {
 		{"avefree"},
@@ -164,7 +162,6 @@ tunables(void)
 		    sizeof (tunable)) == -1) {
 			die("kvm_read error: %s\n", nl[i].n_name);
 		}
-
 		(void) printf("%21s %d\n", nl[i].n_name, tunable);
 	}
 }
@@ -218,14 +215,12 @@ panicbuf(void)
 		(void) printf("%16s %s\n", "message", buf + pd->pd_msgoff);
 		n = (pd->pd_msgoff - (sizeof (panic_data_t) -
 		    sizeof (panic_nv_t))) / sizeof (panic_nv_t);
-
 		for (i = 0; i < n; i++) {
 			(void) printf("%16s %llx\n",
 			    pd->pd_nvdata[i].pnv_name,
 			    (long long unsigned int)pd->pd_nvdata[i].pnv_value);
 		}
 	}
-
 	(void) free(buf);
 }
 
@@ -233,7 +228,6 @@ panicbuf(void)
 static void
 msgbuf(void)
 {
-
 	queue_t q;
 	uintptr_t qp;
 	mblk_t next, *mp;
@@ -300,7 +294,6 @@ msgbuf(void)
 		}
 
 		(void) printf("%s", line);
-
 		mp = nx.b_next;
 	}
 }
@@ -448,7 +441,6 @@ main(int argc, char *argv[])
 	}
 
 	(void) printf("hostid: %x\n", atoi(hw_serial));
-
 	(void) printf("image uuid: %s\n", kd->kvm_dump.dump_uuid[0] != '\0' ?
 		    kd->kvm_dump.dump_uuid : "(not set)");
 
@@ -460,7 +452,6 @@ main(int argc, char *argv[])
 	(void) printf("physmem: %d (%s)\n", physmem, memory);
 
 	(void) printf("panic message: %s\n", kd->kvm_dump.dump_panicstring);
-
 	(void) printf("crashtime: %s", ctime(&kd->kvm_dump.dump_crashtime));
 
 	nicenum(st.st_size, coresize);
