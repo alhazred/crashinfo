@@ -1,13 +1,13 @@
 crashinfo
 ====
 
-Display some initial information about kernel crash on illumos
+Display some initial information about kernel crash on illumos, shows dump headers, msgbuf, panicinfo, some main tunables.
 
 #### Usage
 <pre>
 Usage: crashinfo [-a | -dmpt] [-v]  corefile  
 </pre>
-Example
+Example (default output without options):
 <pre>
 # crashinfo /var/crash/vmcore.0
 core file /var/crash/0/vmcore.0 (64-bit) from lannister-57
